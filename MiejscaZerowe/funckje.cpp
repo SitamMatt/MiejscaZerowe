@@ -14,36 +14,6 @@ void menu()
    cout <<"[3] f(x) = (2^x) - 3 ;"<<endl;
    cout <<"[4] f(x) = [((2^x) - 3)^3] + 2x - 3 ;"<<endl;
 }
-double fun1(double a, int opcja)
-{
-    double y;
-    switch(opcja)
-    {
-
-        case 1:
-            {
-            double horner[4]={0.5,2,-1,-3};                     // jakos poszlo tym honrerem
-            int dlugosc = 4;
-            y = horner[0];
-            for(int i = 1; i< dlugosc; i++)
-            {
-                y = (y*a)+horner[i];
-            }
-            }
-            break;
-        case 2:
-            y = sin(a/3.0) +0.5 ;
-            break;
-        case 3:
-            y = pow(2,a) - 3;
-            break;
-        case 4:
-            y = pow((pow(2,a)-3),3) + (2*a) - 3;
-            break;
-
-    }
-    return y;
-}
 
 double funOne(double x) {
 	double y;

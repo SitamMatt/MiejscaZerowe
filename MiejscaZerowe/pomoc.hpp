@@ -2,7 +2,6 @@
 #define POMOC_H
 using namespace std;
 void menu();
-double fun1 (double a, int opcja);
 double funOne(double x);
 double fun2(double x);
 double fun3(double x);

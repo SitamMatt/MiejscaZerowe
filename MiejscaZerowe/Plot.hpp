@@ -19,29 +19,25 @@ public:
 			y.push_back(value);
 		}
 
-		double average = accumulate(y.begin(), y.end(), 0.00) / y.size();
+		double average = accumulate(y.begin(), y.end(), 0.00) / y.size() / 1000;
 
-		set_yrange(-1 * abs(average/4), average/4);
 		set_grid();
-		set_style("linespoints");
+		set_style("lines");
 		set_pointsize(0.5);
-		cmd("set xzeroaxis linetype 11 linewidth 5");
-		cmd("set yzeroaxis linetype 11 linewidth 5");
-		plot_xy(x, y, "podpis - opcjonalnie");
+		cmd("set xzeroaxis linetype 11 linewidth 3");
+		cmd("set yzeroaxis linetype 11 linewidth 3");
+		set_xlabel("OX");
+		set_ylabel("OY");
+		set_title("Wykres");
+
+		plot_xy(x, y, "f(x)");
 	};
-	//Plot() {
-	//	main_plot.set_title("wykres");
-	//	main_plot.set_xlabel("oœ x");//
-	//	main_plot.set_ylabel("oœ y");//
-	//	main_plot.set_style("lines");//
-	//	main_plot.set_grid();
-	//}
 	void SetRange(double ap, double bp) {
 		double right = ap > bp ? ap : bp;
 		double left = ap < bp ? ap : bp;
 		a_b_distance = abs(ap) + abs(bp);
 		set_xrange(left-a_b_distance, right+a_b_distance);
-		set_yrange(0, 20);//
+		set_yrange(left - a_b_distance, right + a_b_distance);
 		a = left;
 		b = right;
 	};

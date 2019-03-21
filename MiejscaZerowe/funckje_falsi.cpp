@@ -33,7 +33,7 @@ double falsii(double a, double b, double x0, double(*funkcja)(double), int&i,int
 			fa = f0;
 		}
 		i++;
-	} while (i <= MaksIter && f0 != 0);
+	} while (i < MaksIter && f0 != 0);
 
 	auto end = std::chrono::system_clock::now();
 	auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
