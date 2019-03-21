@@ -6,7 +6,7 @@
 #include <chrono>
 using namespace std;
 
-double bisi(double point1, double point2, double mid, double(*funkcja)(double), int&iter,int i)
+double bisi(double point1, double point2, double mid, std::function<double(double)> funkcja, int&iter,int i)
 {
 	auto start = std::chrono::system_clock::now();
 
@@ -32,7 +32,7 @@ double bisi(double point1, double point2, double mid, double(*funkcja)(double), 
 }
 
 
-double bisd(double point1, double point2, double mid, double(*funkcja)(double), int&iter,double  e)
+double bisd(double point1, double point2, double mid, std::function<double(double)> funkcja, int&iter,double  e)
 {
 	auto start = std::chrono::system_clock::now();
 

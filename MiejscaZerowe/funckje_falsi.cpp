@@ -7,13 +7,13 @@
 using namespace std;
 
 
-double funf(double a, double b, double(*funkcja)(double))
+double funf(double a, double b, std::function<double(double)> funkcja)
 {
     double ret = (b*funkcja(a)- a*funkcja(b))/(funkcja(a)-funkcja(b));
     return ret;
 }
 
-double falsii(double a, double b, double x0, double(*funkcja)(double), int&i,int MaksIter)
+double falsii(double a, double b, double x0, std::function<double(double)> funkcja, int&i,int MaksIter)
 {
 	auto start = std::chrono::system_clock::now();
 	// wstepna inicjacja zmiennych
@@ -42,7 +42,7 @@ double falsii(double a, double b, double x0, double(*funkcja)(double), int&i,int
 }
 
 
-double falsid(double a, double b, double x0, double(*funkcja)(double), int&i,double  epsilon)
+double falsid(double a, double b, double x0, std::function<double(double)> funkcja, int&i,double  epsilon)
 {
 	auto start = std::chrono::system_clock::now();
 	// wstepna inicjacja zmiennych

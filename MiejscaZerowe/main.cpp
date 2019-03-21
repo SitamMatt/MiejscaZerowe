@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <windows.h>
 #include <vector>
+#include <functional>
 
 #include "pomoc.hpp"
 #include "Plot.hpp"
@@ -17,7 +18,7 @@ int main()
 
 	double a, b, x0, fa, fb;
 	char repeat = 't';
-	double(*fun)(double) = nullptr;
+	//double(*fun)(double) = nullptr;
 
 	while (repeat == 't')
 	{
@@ -36,18 +37,35 @@ int main()
 			}
 		}
 
+		double factors[10];
+		double len;
+		function<double(double)> functor;
+		
 		switch (opcja) {
 		case 1:
-			fun = fun1;
+			//wielomiany
+			cout << "Podaj stopien wielomianu : ";
+			cin >> len;
+			cout <<endl<< "Podaj wartosci wielomianow : ";
+			for (int j = 0; j <= len; j++)
+			{
+				cin >> factors[j];
+			}
+			//wypelnianie wspolczynnikow
+			functor = [&factors, len](double x) -> double {
+				//horner things
+				double result = horner(x, factors, len);
+				return result;
+			};
 			break;
 		case 2:
-			fun = fun2;
+			functor = fun2;
 			break;
 		case 3:
-			fun = fun3;
+			functor = fun3;
 			break;
 		case 4:
-			fun = fun4;
+			functor = fun4;
 			break;
 		}
 
@@ -59,8 +77,8 @@ int main()
 			cout << "a = "; cin >> a;
 			cout << "b = "; cin >> b;
 
-			fa = fun(a);
-			fb = fun(b);
+			fa = functor(a);
+			fb = functor(b);
 
 			loop = check(fa, fb);
 
@@ -100,13 +118,13 @@ int main()
 			{
 			case 'a':
 
-				x0 = bisd(a, b, x0, fun, *x, e);
+				x0 = bisd(a, b, x0, functor, *x, e);
 				cout << "Poszukiwany punkt to z " << x0 << " wyznaczony z dokladnoscia do " << e << " .";
 
 				break;
 			case 'b':
 
-				x0 = bisi(a, b, x0, fun, *x, i);
+				x0 = bisi(a, b, x0, functor, *x, i);
 				cout << "Poszukiwany punkt to z " << x0 << " wyznaczony po  " << i << "  iteracjach.";
 
 				break;
@@ -119,13 +137,13 @@ int main()
 			{
 			case 'a':
 
-				x0 = falsid(a, b, x0, fun, *x, e);
+				x0 = falsid(a, b, x0, functor, *x, e);
 				cout << "Poszukiwany punkt to z " << x0 << " wyznaczony z dokladnoscia do " << setprecision(9) << e << " po " << *x << " iteracjach.";
 				
 				break;
 			case 'b':
 
-				x0 = falsii(a, b, x0, fun, *x, i);
+				x0 = falsii(a, b, x0, functor, *x, i);
 				cout << "Poszukiwany punkt to z " << x0 << " wyznaczony po  " << *x << "  iteracjach.";
 
 				break;
@@ -136,7 +154,7 @@ int main()
 		// Rysowanie wykresu
 		Plot drawing;
 		drawing.SetRange(a, b);
-		drawing.Draw(fun);
+		drawing.Draw(functor);
 		
 
 

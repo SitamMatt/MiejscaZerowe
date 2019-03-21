@@ -7,7 +7,7 @@ public:
 	double a;
 	double b;
 	double a_b_distance;
-	void Draw(double(*fun)(double)) {
+	void Draw(std::function<double(double)> fun) {
 
 		vector<double> x;
 		vector<double> y;
