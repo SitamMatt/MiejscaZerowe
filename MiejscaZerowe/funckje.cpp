@@ -15,15 +15,20 @@ void menu()
    cout <<"[4] f(x) = [((2^x) - 3)^3] + 2x - 3 ;"<<endl;
 }
 
-double funOne(double x) {
-	double y;
-	double horner[4] = { 0.5,2,-1,-3 };                     // jakos poszlo tym honrerem
-	int dlugosc = 4;
-	y = horner[0];
-	for (int i = 1; i < dlugosc; i++)
+double horner(double x, double tab[], int n) {
+	double y = tab[0];
+	for (int i = 1; i < n; i++)
 	{
-		y = (y*x) + horner[i];
+		y = (y*x) + tab[i];
 	}
+	return y;
+}
+
+double fun1(double x) {
+	double y;
+	double horner_wsp[4] = { 0.5,2,-1,-3 };                     // jakos poszlo tym honrerem
+	int dlugosc = 4;
+	y = horner(x, horner_wsp, dlugosc);
 	return y;
 }
 

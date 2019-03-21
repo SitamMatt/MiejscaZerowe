@@ -38,7 +38,7 @@ int main()
 
 		switch (opcja) {
 		case 1:
-			fun = funOne;
+			fun = fun1;
 			break;
 		case 2:
 			fun = fun2;
