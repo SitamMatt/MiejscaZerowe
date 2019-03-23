@@ -46,9 +46,10 @@ int main()
 			//wielomiany
 			cout << "Podaj stopien wielomianu : ";
 			cin >> len;
-			cout <<endl<< "Podaj wartosci wielomianow : ";
+			cout << "Podaj wartosci wielomianow : " << endl;
 			for (int j = 0; j <= len; j++)
 			{
+				cout << "x^" << len - j << " : ";
 				cin >> factors[j];
 			}
 			//wypelnianie wspolczynnikow
