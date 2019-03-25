@@ -41,4 +41,17 @@ public:
 		a = left;
 		b = right;
 	};
+
+	void Root(double x0, double y0)
+	{
+		vector<double> a;
+		vector<double> b;
+		a.push_back(x0);
+		b.push_back(y0);
+		set_style("points");
+		set_pointsize(3.0);
+		plot_xy(a, b, "Pierwiastek");
+	}
+
 };
+

@@ -74,15 +74,28 @@ int main()
 		cout << endl << "Podaj przedzialy funkcji." << endl;
 		while (loop != 1)
 		{
+			cout << "a = "; 
+			cin >> a;
 
-			cout << "a = "; cin >> a;
-			cout << "b = "; cin >> b;
+			cout << "b = "; 
+			cin >> b;
 
-			fa = functor(a);
-			fb = functor(b);
+			if (!cin.fail()) { // tylko je¿eli nie wszed³ b³êdny input
+				fa = functor(a);
+				fb = functor(b);
 
-			loop = check(fa, fb);
-
+				loop = check(fa, fb);
+			}
+			// wyczyszczenie inputu
+			else {
+				char znak;
+				cout << "input error" << endl;
+				cin.clear();
+				do {
+					cin.get(znak);
+				} while (znak != '\n');
+			}
+			
 		}
 
 		cout << endl << "Metoda Falsi (1) czy Bisekcja (2)?" << endl;
@@ -152,10 +165,13 @@ int main()
 			cout << endl << "Metoda Falsi" << endl;
 		}
 
+		double y0 = functor(x0);
+
 		// Rysowanie wykresu
 		Plot drawing;
 		drawing.SetRange(a, b);
 		drawing.Draw(functor);
+		drawing.Root(x0, y0);
 		
 
 
